@@ -1,0 +1,181 @@
+@use "../../App.scss";
+
+#home {
+  min-height: 60vh;
+  width: 100vw;
+  text-align: center;
+
+  .decorPic {
+    height: 80px;
+    position: absolute;
+    top: 12vh;
+    animation: upDown 3s linear infinite;
+  }
+
+  #btc {
+    left: 17vw;
+  }
+  #eth {
+    animation-delay: 0.8s;
+    right: 15vw;
+  }
+
+  .blocked {
+    height: 14vh;
+  }
+
+  .title {
+    color: App.$primary-color;
+    font-size: 50px;
+    font-weight: 600;
+    text-shadow: 2px 1px 2px App.$primary-hover;
+    width: auto;
+  }
+
+  .description {
+    font-size: 20px;
+    color: App.$secondary-color;
+    margin: 8px 0 0 0;
+    font-weight: 550;
+    text-shadow: 0 0 7px App.$primary-hover;
+  }
+
+  .Card {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0 0 0;
+
+    .allCardsContainer {
+      width: 100vw;
+      padding: 0 10px 0 10px;
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+
+      .coinsSection {
+        border: 1px solid #4b5563;
+        border-radius: 10px;
+        margin: 0 0 15px 5px;
+        box-sizing: border-box;
+        min-height: 186px;
+
+        .noData {
+          color: white;
+          font-size: 16px;
+          height: 50%;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .coinTitle {
+          text-align: left;
+          color: white;
+          margin: 10px 5px 0 18px;
+          font-weight: 400;
+          display: flex;
+          justify-content: space-between;
+          font-size: 14px;
+
+          .viewmore {
+            font-size: 13px;
+            display: flex;
+            color: white;
+
+            .viewMoreIcon {
+              margin: 0 0 0 3px;
+            }
+          }
+
+          .viewmore:hover {
+            color: App.$primary-hover;
+          }
+        }
+
+        span {
+          display: flex;
+          align-items: center;
+        }
+
+        .coinContainer {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 12px;
+          margin: 10px 0 5px 0;
+          color: white;
+          box-sizing: border-box;
+
+          .logo {
+            width: 27px;
+            height: 27px;
+          }
+
+          .symbol {
+            font-size: 16px;
+            font-weight: 550;
+            margin: 0 0 0 7px;
+          }
+
+          .price {
+            font-size: 13.5px;
+          }
+
+          .priceChanged {
+            display: flex;
+            font-size: 13.5px;
+
+            .priceChangedIcon {
+              margin: 0 2px 0 0;
+            }
+
+            .upIcon {
+              margin: 0 7px 0 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 770px) {
+  #home {
+    .decorPic {
+      height: 60px;
+    }
+
+    #btc {
+      left: 10vw;
+    }
+    #eth {
+      right: 8vw;
+    }
+    
+    .Card .allCardsContainer {
+      justify-content: center;
+    }
+  }
+}
+
+@keyframes upDown {
+  0% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-12px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  65% {
+    transform: translateY(0);
+  }
+  90% {
+    transform: translateY(7px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

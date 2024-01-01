@@ -1,0 +1,135 @@
+@use "../../App.scss";
+
+.Navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 55px;
+  padding: 0 25px 0 25px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  position: fixed;
+  backdrop-filter: blur(30px);
+  z-index: 999;
+
+  .logo {
+    width: auto;
+    font-size: 22px;
+    font-weight: 600;
+    color: App.$primary-color;
+    text-shadow: 1.2px 1.2px 2px App.$primary-hover;
+  }
+
+  .items {
+    display: flex;
+    list-style: none;
+
+    li {
+      a {
+        height: 100%;
+        padding: 0 12px 0 12px;
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.12s linear;
+      }
+
+      a:hover {
+        color: App.$primary-hover;
+      }
+    }
+  }
+
+  .MenuBtn {
+    position: relative;
+    display: none;
+    top: 7px;
+    right: 0;
+    height: 20px;
+    width: 30px;
+    cursor: pointer;
+    transition: all 0.11s linear;
+    z-index: 1001;
+
+    span {
+      background-color: App.$primary-color;
+      height: 2px;
+      width: 100%;
+      position: absolute;
+      transition: all 0.22s;
+    }
+    .open:nth-child(1) {
+      transform: rotate(-45deg) translate(-9px, 6px);
+      top: 0;
+    }
+    .open:nth-child(2) {
+      opacity: 0;
+      top: calc(100% / 2);
+    }
+    .open:nth-child(3) {
+      transform: rotate(45deg) translate(-8px, -5px);
+      top: 100%;
+    }
+    .close:nth-child(1) {
+      top: 0;
+    }
+    .close:nth-child(2) {
+      top: calc(100% / 2);
+    }
+    .close:nth-child(3) {
+      top: 100%;
+    }
+  }
+  .ant-drawer-body {
+    padding: 0;
+  }
+}
+
+.mobileMenu {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+
+  li {
+    margin: 0 0 20px 0;
+    padding: 0 0 15px 0;
+    border-bottom: 0.5px rgba(198, 198, 198, 0.259) solid;
+
+    a {
+      color: black;
+      font-size: 18px;
+    }
+    a:hover {
+      color: App.$primary-hover;
+    }
+  }
+}
+@media screen and (max-width: 650px) {
+  .Navbar {
+    .desktopview {
+      display: none;
+    }
+
+    .items {
+      li {
+        a {
+          height: 100%;
+          padding: 0 12px 0 12px;
+          color: white;
+          text-decoration: none;
+          font-weight: 500;
+          transition: all 0.12s linear;
+        }
+
+        a:hover {
+          color: App.$primary-hover;
+        }
+      }
+    }
+
+    .MenuBtn {
+        display: block;
+    }
+  }
+}

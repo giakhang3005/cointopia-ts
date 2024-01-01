@@ -1,0 +1,159 @@
+@use "../../App.scss";
+
+#market {
+  min-height: 100vh;
+  width: 100vw;
+
+  .blocked {
+    height: 10vh;
+  }
+
+  .title {
+    color: App.$primary-color;
+    font-size: 30px;
+    font-weight: 600;
+    margin: 0 0 0 30px;
+    text-shadow: 1px 1px 2px App.$primary-hover;
+  }
+
+  .tableContainer {
+    box-sizing: border-box;
+    margin: 20px 25px 0 25px;
+
+    .Title {
+      color: App.$secondary-color;
+      font-weight: 600;
+      padding: 15px 5px 15px 5px;
+      border-bottom: 1px solid App.$secondary-hover;
+
+      .cell {
+        font-size: 18px;
+      }
+    }
+    .number {
+      text-align: right;
+      //   padding: 0 5% 0 0;
+    }
+
+    .Body {
+      .Row {
+        padding: 22px 7px 15px 7px;
+        box-sizing: border-box;
+        border-bottom: 1px solid App.$secondary-hover;
+        transition: all 0.1s linear;
+
+        .rowCell {
+          display: flex;
+          align-items: center;
+
+          .image {
+            height: 40px;
+            width: 40px;
+            margin: 0 10px 0 0;
+          }
+
+          .logo {
+            color: App.$secondary-color;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0 7px 0 0;
+          }
+
+          .name {
+            color: App.$thirdary-color;
+            font-size: 12px;
+            font-weight: 500;
+          }
+
+          .price {
+            width: 100%;
+            text-align: right;
+            color: App.$secondary-color;
+            font-size: 17px;
+          }
+
+          .changes {
+            width: 100%;
+            text-align: right;
+            font-size: 17px;
+            font-weight: 400;
+          }
+
+          .marketCap {
+            color: App.$secondary-color;
+            width: 100%;
+            text-align: right;
+            font-size: 17px;
+          }
+        }
+      }
+
+      .Row:hover {
+        background-color: #7c3aed20;
+      }
+    }
+
+    .pagnition {
+      display: flex;
+      list-style: none;
+      color: white;
+      justify-content: right;
+
+      li, .icon {
+        padding: 6px 10px 6px 10px;
+        margin: 1.5px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.12s linear;
+      }
+
+      li:hover, .icon:hover {
+        background-color: App.$secondary-hover-opacity;
+      }
+
+      .isSelected {
+        background-color: App.$secondary-hover;
+      }
+      .isSelected:hover {
+        background-color: App.$secondary-hover;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 770px) {
+    #market {
+        .tableContainer {
+            .Title {
+                .cell {
+                    font-size: 15px;
+                }
+            }
+
+            .Body {
+                .Row {
+                    .rowCell {
+
+                        .image {
+                            width: 25px;
+                            height: 25px;
+                        }
+
+                        .logo {
+                            font-size: 15px;
+                        }
+
+                        .name {
+                            font-size: 10px;
+                        }
+
+                        .price, .changes, .marketCap {
+                            font-size: 15px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

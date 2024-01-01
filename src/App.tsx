@@ -1,24 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss"
+import Nav from './layout/Nav/Nav';
+import Home from './layout/Home/Home';
+import Martket from './layout/Market/Martket';
+import { ConfigProvider } from "antd";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ConfigProvider theme={{ token: { colorPrimary: "#7c3aed", colorBgContainer: '#111827' } }}>
+        <Nav />
+        <Home />
+        <Martket />
+      </ConfigProvider>
     </div>
   );
 }
