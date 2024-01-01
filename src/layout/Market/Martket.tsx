@@ -141,7 +141,7 @@ const Martket = (props: Props) => {
                         <LeftOutlined className="icon" onClick={handlePreviousPage} />
                         <li className={pageNumber === 1 ? 'isSelected' : ''} onClick={() => handleChangeNumber(1)}>1</li>
 
-                        {pageNumber > 2 && <li>...</li>}
+                        {pageNumber > 2 && <li className="dotdotdot">...</li>}
 
                         <li
                             className={pageNumber === secondPage ? 'isSelected' : ''}
@@ -161,8 +161,13 @@ const Martket = (props: Props) => {
                         >
                             {forthPage}
                         </li>
-                        {pageNumber <= totalPage - 3 && <li>...</li>}
-                        <li className={pageNumber === totalPage ? 'isSelected' : ''} onClick={() => handleChangeNumber(totalPage)}>{totalPage}</li>
+                        {pageNumber <= totalPage - 3 && <li className="dotdotdot">...</li>}
+                        <li
+                            className={pageNumber === totalPage ? 'isSelected' : ''}
+                            onClick={() => handleChangeNumber(totalPage)}
+                        >
+                            {totalPage}
+                        </li>
                         <RightOutlined className="icon" onClick={handleNextPage} />
                     </ul>
 

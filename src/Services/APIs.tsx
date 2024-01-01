@@ -29,7 +29,7 @@ export const getTopMarketCap = (setTopCoins: (value: any) => void, topType: stri
         })
         .catch(err => {
             console.log(err)
-            message.error('You have sending too many requests, please try again in 5 minutes.')
+            // message.error('You have sending too many requests, please try again in 5 minutes.')
         })
 }
 
@@ -41,7 +41,7 @@ export const getMarket = (setTopCoins: (value: any) => void, setLoading: (value:
         })
         .catch(err => {
             console.log(err)
-            message.error('You have sending too many requests, please try again in 5 minutes.')
+            // message.error('You have sending too many requests, please try again in 5 minutes.')
         })
         .finally(() => setLoading(false))
 }

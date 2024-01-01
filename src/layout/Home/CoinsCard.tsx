@@ -37,6 +37,11 @@ const CoinCard = ({ img, symbol, price, priceChanged }: ICoinCard) => {
 // TOP MARKET CAP
 export const TopMarketCap = (props: Props) => {
     const [topCoins, setTopCoins] = useState<any>(null)
+    const [displayCoins, setDisplayCoins] = useState<any>(null)
+
+    useEffect(() => {
+        setDisplayCoins(topCoins)
+    }, [topCoins])
 
     useEffect(() => {
         getTopMarketCap(setTopCoins, 'marketCap')
@@ -49,13 +54,13 @@ export const TopMarketCap = (props: Props) => {
             </div>
 
             {
-                topCoins === null && (
+                displayCoins === null && (
                     <i className="noData">Please try again later</i>
                 )
             }
 
             {
-                topCoins?.map((coin: any, i: number) => {
+                displayCoins?.map((coin: any, i: number) => {
                     return (
                         <CoinCard
                             img={coin.image}
@@ -72,6 +77,12 @@ export const TopMarketCap = (props: Props) => {
 // TOP NEWEST TOKEN
 export const TopNewToken = (props: Props) => {
     const [topCoins, setTopCoins] = useState<any>(null)
+    const [displayCoins, setDisplayCoins] = useState<any>(null)
+
+    useEffect(() => {
+        setDisplayCoins(topCoins)
+    }, [topCoins])
+    
 
     useEffect(() => {
         getTopMarketCap(setTopCoins, 'newest')
@@ -84,13 +95,13 @@ export const TopNewToken = (props: Props) => {
             </div>
 
             {
-                topCoins === null && (
+                displayCoins === null && (
                     <i className="noData">Please try again later</i>
                 )
             }
 
             {
-                topCoins?.map((coin: any, i: number) => {
+                displayCoins?.map((coin: any, i: number) => {
                     return (
                         <CoinCard
                             img={coin.image}
@@ -107,6 +118,11 @@ export const TopNewToken = (props: Props) => {
 // TOP VOLUME
 export const TopVolume = (props: Props) => {
     const [topCoins, setTopCoins] = useState<any>(null)
+    const [displayCoins, setDisplayCoins] = useState<any>(null)
+
+    useEffect(() => {
+        setDisplayCoins(topCoins)
+    }, [topCoins])
 
     useEffect(() => {
         getTopMarketCap(setTopCoins, 'volume')
@@ -119,13 +135,13 @@ export const TopVolume = (props: Props) => {
             </div>
 
             {
-                topCoins === null && (
+                displayCoins === null && (
                     <i className="noData">Please try again later</i>
                 )
             }
 
             {
-                topCoins?.map((coin: any, i: number) => {
+                displayCoins?.map((coin: any, i: number) => {
                     return (
                         <CoinCard
                             img={coin.image}
