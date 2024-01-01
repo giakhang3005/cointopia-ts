@@ -35,7 +35,7 @@ export const getTopMarketCap = (setTopCoins: (value: any) => void, topType: stri
 
 export const getMarket = (setTopCoins: (value: any) => void, setLoading: (value: any) => void, amountPerPage: number, page: number) => {
     setLoading(true)
-    axios.get(`${endPoint}/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${amountPerPage}&page=${page}&sparkline=false&locale=en`)
+    axios.get(`${endPoint}/coins/markets?vs_currency=usd&order=market_cap_desc&page=1&sparkline=false&locale=en`)
         .then(res => {
             setTopCoins(res.data)
         })

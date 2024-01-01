@@ -15,29 +15,71 @@ const convertToLetterPrice = (price: number) => {
     const million = 1000000;
     const thousand = 1000;
 
-    if (price >= 10 * billion) {
+    if (price >= billion) {
         return `${(price / billion).toFixed(3)}B`
     }
-    else if (price >= 10 * million) {
-        return `${(price / million).toFixed(3)}B`
+    else if (price >= million) {
+        return `${(price / million).toFixed(3)}M`
     }
-    else if (price >= 10 * thousand) {
+    else if (price >= thousand) {
         return `${(price / thousand).toFixed(3)}K`
     }
 }
 
 const Martket = (props: Props) => {
     const [pageNumber, setPageNumber] = useState<number>(1)
+    const [secondPage, setSecondPage] = useState<number>(2)
+    const [thirdPage, setThirdPage] = useState<number>(3)
+    const [forthPage, setForthPage] = useState<number>(4)
+    const [totalPage, setTotalPage] = useState<number>(1)
     const [coins, setCoins] = useState<any>(null)
+    const [displayCoins, setDisplayCoins] = useState<any>(null)
     const [loading, setLoading] = useState<boolean>(false)
 
     useEffect(() => {
         getMarket(setCoins, setLoading, coinsPerPage, pageNumber)
-    }, [pageNumber])
+    }, [])
+
+    useEffect(() => {
+        setCurrCoinPage(pageNumber)
+        setTotalPage(coins === null ? 0 : Math.ceil(coins.length / coinsPerPage))
+    }, [coins])
+
+    const setCurrCoinPage = (page: number) => {
+        const startNumber = (page - 1) * coinsPerPage
+        let coinsArr = []
+
+        if (coins !== null) {
+            for (let i = startNumber; i < startNumber + 10; i++) {
+                coinsArr.push(coins[i])
+            }
+        }
+
+        setDisplayCoins(coinsArr)
+    }
 
     const handleChangeNumber = (page: number) => {
+        let secondPageLocal = secondPage,
+            thirdPageLocal = thirdPage,
+            forthPageLocal = forthPage;
         if (page !== pageNumber) {
+            setCurrCoinPage(page)
+
+
+            if (page <= 2 || page >= totalPage - 2) {
+                if (page <= 2) {
+                    thirdPageLocal = 3
+                } else {
+                    thirdPageLocal = totalPage - 2
+                }
+            } else {
+                thirdPageLocal = page
+            }
+
             setPageNumber(page)
+            setSecondPage(thirdPageLocal - 1)
+            setThirdPage(thirdPageLocal)
+            setForthPage(thirdPageLocal + 1)
         }
     }
 
@@ -48,7 +90,7 @@ const Martket = (props: Props) => {
     }
 
     const handleNextPage = () => {
-        if (pageNumber < 5) {
+        if (pageNumber < totalPage) {
             handleChangeNumber(pageNumber + 1)
         }
     }
@@ -68,10 +110,9 @@ const Martket = (props: Props) => {
                         <Col span={6} className="cell number">Market Cap</Col>
                     </Row>
 
-
                     <div className="Body">
                         {
-                            coins?.map((coin: any, i: number) => {
+                            displayCoins?.map((coin: any, i: number) => {
                                 return (
                                     <Row className="Row" key={i}>
                                         <Col span={8} className="rowCell">
@@ -99,10 +140,29 @@ const Martket = (props: Props) => {
                     <ul className="pagnition">
                         <LeftOutlined className="icon" onClick={handlePreviousPage} />
                         <li className={pageNumber === 1 ? 'isSelected' : ''} onClick={() => handleChangeNumber(1)}>1</li>
-                        <li className={pageNumber === 2 ? 'isSelected' : ''} onClick={() => handleChangeNumber(2)}>2</li>
-                        <li className={pageNumber === 3 ? 'isSelected' : ''} onClick={() => handleChangeNumber(3)}>3</li>
-                        <li className={pageNumber === 4 ? 'isSelected' : ''} onClick={() => handleChangeNumber(4)}>4</li>
-                        <li className={pageNumber === 5 ? 'isSelected' : ''} onClick={() => handleChangeNumber(5)}>5</li>
+
+                        {pageNumber > 2 && <li>...</li>}
+
+                        <li
+                            className={pageNumber === secondPage ? 'isSelected' : ''}
+                            onClick={() => handleChangeNumber(secondPage)}
+                        >
+                            {secondPage}
+                        </li>
+
+                        <li className={pageNumber === thirdPage ? 'isSelected' : ''}
+                            onClick={() => handleChangeNumber(thirdPage)}
+                        >
+                            {thirdPage}
+                        </li>
+                        <li
+                            className={pageNumber === forthPage ? 'isSelected' : ''}
+                            onClick={() => handleChangeNumber(forthPage)}
+                        >
+                            {forthPage}
+                        </li>
+                        {pageNumber <= totalPage - 3 && <li>...</li>}
+                        <li className={pageNumber === totalPage ? 'isSelected' : ''} onClick={() => handleChangeNumber(totalPage)}>{totalPage}</li>
                         <RightOutlined className="icon" onClick={handleNextPage} />
                     </ul>
 
