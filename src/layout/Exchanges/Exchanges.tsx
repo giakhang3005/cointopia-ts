@@ -30,7 +30,8 @@ const Exchanges = (props: Props) => {
                 <Col span={0} sm={2}></Col>
                 <TokenSection token={firstToken} setToken={setFirstToken} exValue={firstValue} setExValue={setFirstValue} setOthersValue={setSecondValue} otherToken={secondToken} />
 
-                <Col span={24} sm={4} className='middleChangeContainer'>
+                {/* Desktop Arrow & Button */}
+                <Col span={24} sm={6} className='middleChangeContainer'>
                     <ArrowRightOutlined className='icon' />
                     <div className="connectWallet">
                         <WalletFilled className='icon' />
@@ -38,20 +39,25 @@ const Exchanges = (props: Props) => {
                     </div>
                 </Col>
 
-                <Col span={24} sm={4} className='middleChangeContainerMobile'>
+                {/* Mobile Arrow */}
+                <Col span={24} sm={0} className='middleChangeContainerMobile'>
                     <ArrowDownOutlined className='icon' />
                 </Col>
 
                 <TokenSection token={secondToken} setToken={setSecondToken} exValue={secondValue} setExValue={setSecondValue} setOthersValue={setFirstValue} otherToken={firstToken} />
-                
-                <Col span={0} sm={2}></Col>
+
+                {/* <Col span={0} sm={2}></Col> */}
             </Row>
+
+            {/* Mobile button */}
             <Row>
                 <Col span={4} sm={0} />
                 <Col span={16} sm={0}>
                     <div className="connectWallet">
-                        <WalletFilled className='icon' />
-                        <div className="callToAction">Connect Wallet</div>
+                        <span>
+                            <WalletFilled className='icon' />
+                            <div className="callToAction">Connect Wallet</div>
+                        </span>
                     </div>
                 </Col>
             </Row>
