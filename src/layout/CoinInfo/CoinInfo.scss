@@ -1,0 +1,101 @@
+@use "../../App.scss";
+
+.coinInfo {
+  width: 100vw;
+  height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  .imageContainer {
+    text-align: center;
+    .icon {
+      width: 200px;
+    }
+
+    .name {
+      color: white;
+      font-weight: 550;
+      font-size: 35px;
+      margin: 15px 0 20px 0;
+    }
+
+    .rank {
+      color: white;
+      font-size: 20px;
+
+      span {
+        font-weight: 600;
+        color: App.$primary-color;
+        text-shadow: 0.7px 0.5px 1px App.$primary-hover;
+      }
+    }
+  }
+
+  .changes,
+  .price,
+  .coinSymbol {
+    margin: 15px 0 0 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+  }
+
+  .description {
+    margin: 25px 18px 0 10px;
+    font-size: 16px;
+    color: white;
+    height: 250px;
+    overflow: scroll;
+    letter-spacing: 0.4px;
+    line-height: 21px;
+
+    // Custom scrollbar styles
+    &::-webkit-scrollbar {
+      width: 7px; // width of the scrollbar
+      height: 0px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: App.$secondary-hover; // color of the track
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: App.$primary-color; // color of the scroll thumb
+      transition: all 0.2 linear;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: App.$primary-hover; // color of the scroll thumb when hovering
+      transition: all 0.2 linear;
+    }
+
+    a {
+      color: App.$primary-color;
+    }
+    a:hover {
+      color: App.$primary-hover;
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .coinInfo {
+    .imageContainer {
+      .icon {
+        width: 150px;
+      }
+      .rank {
+        margin: 25px 30px 20px 30px;
+        padding: 0 0 25px 0;
+        border-bottom: 1px solid white;
+      }
+    }
+
+    .description {
+        margin: 25px 20px 0 25px;
+        font-size: 14px;
+    }
+  }
+}

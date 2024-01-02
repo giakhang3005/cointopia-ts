@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import "./Market.scss"
 import { Row, Col, Spin } from "antd"
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import { getMarket } from "../../Services/APIs";
+import { Link } from "react-router-dom";
+import { Data, IContext } from "../../App";
 
 type Props = {}
 
@@ -27,31 +28,27 @@ const convertToLetterPrice = (price: number) => {
 }
 
 const Martket = (props: Props) => {
+    const { coinList, loading } = useContext(Data) as IContext;
+
     const [pageNumber, setPageNumber] = useState<number>(1)
     const [secondPage, setSecondPage] = useState<number>(2)
     const [thirdPage, setThirdPage] = useState<number>(3)
     const [forthPage, setForthPage] = useState<number>(4)
     const [totalPage, setTotalPage] = useState<number>(1)
-    const [coins, setCoins] = useState<any>(null)
     const [displayCoins, setDisplayCoins] = useState<any>(null)
-    const [loading, setLoading] = useState<boolean>(false)
-
-    useEffect(() => {
-        getMarket(setCoins, setLoading, coinsPerPage, pageNumber)
-    }, [])
 
     useEffect(() => {
         setCurrCoinPage(pageNumber)
-        setTotalPage(coins === null ? 0 : Math.ceil(coins.length / coinsPerPage))
-    }, [coins])
+        setTotalPage(coinList === null ? 0 : Math.ceil(coinList.length / coinsPerPage))
+    }, [coinList])
 
     const setCurrCoinPage = (page: number) => {
         const startNumber = (page - 1) * coinsPerPage
         let coinsArr = []
 
-        if (coins !== null) {
+        if (coinList !== null) {
             for (let i = startNumber; i < startNumber + 10; i++) {
-                coinsArr.push(coins[i])
+                coinsArr.push(coinList[i])
             }
         }
 
@@ -110,66 +107,72 @@ const Martket = (props: Props) => {
                         <Col span={6} className="cell number">Market Cap</Col>
                     </Row>
 
-                    <div className="Body">
-                        {
-                            displayCoins?.map((coin: any, i: number) => {
-                                return (
-                                    <Row className="Row" key={i}>
-                                        <Col span={8} className="rowCell">
-                                            <img src={coin.image} className="image" />
-                                            <span className="logo">{coin.symbol.toUpperCase()}</span>
-                                            <span className="name">{coin.name}</span>
-                                        </Col>
-                                        <Col span={5} className="rowCell number">
-                                            <span className="price">${coin.current_price}</span>
-                                        </Col>
-                                        <Col span={5} className="rowCell number" style={{ color: coin.price_change_percentage_24h < 0 ? redColor : greenColor }}>
-                                            <span className="changes">{coin.price_change_percentage_24h.toFixed(3)}%</span>
-                                        </Col>
-                                        <Col span={6} className="rowCell">
-                                            <span className="marketCap">
-                                                ${convertToLetterPrice(coin.market_cap)}
-                                            </span>
-                                        </Col>
-                                    </Row>
-                                )
-                            })
-                        }
-                    </div>
+                    {displayCoins === null || displayCoins?.length === 0
+                        ?
+                        <i className="tryagain">You have sending too many request, Please try again later.</i>
+                        :
+                        (<>
+                            <div className="Body">
+                                {
+                                    displayCoins?.map((coin: any, i: number) => {
+                                        return (
+                                            <Row className="Row" key={i}>
+                                                <Col span={8} className="rowCell">
+                                                    <img src={coin.image} className="image" />
+                                                    <Link to={`/${coin.id}`} className="logo">{coin.symbol.toUpperCase()}</Link>
+                                                    <Link to={`/${coin.id}`} className="name">{coin.name}</Link>
+                                                </Col>
+                                                <Col span={5} className="rowCell number">
+                                                    <span className="price">${coin.current_price.toLocaleString()}</span>
+                                                </Col>
+                                                <Col span={5} className="rowCell number" style={{ color: coin.price_change_percentage_24h < 0 ? redColor : greenColor }}>
+                                                    <span className="changes">{coin.price_change_percentage_24h.toFixed(3)}%</span>
+                                                </Col>
+                                                <Col span={6} className="rowCell">
+                                                    <span className="marketCap">
+                                                        ${convertToLetterPrice(coin.market_cap)}
+                                                    </span>
+                                                </Col>
+                                            </Row>
+                                        )
+                                    })
+                                }
+                            </div>
 
-                    <ul className="pagnition">
-                        <LeftOutlined className="icon" onClick={handlePreviousPage} />
-                        <li className={pageNumber === 1 ? 'isSelected' : ''} onClick={() => handleChangeNumber(1)}>1</li>
+                            <ul className="pagnition">
+                                <LeftOutlined className="icon" onClick={handlePreviousPage} />
+                                <li className={pageNumber === 1 ? 'isSelected' : ''} onClick={() => handleChangeNumber(1)}>1</li>
 
-                        {pageNumber > 2 && <li className="dotdotdot">...</li>}
+                                {pageNumber > 2 && <li className="dotdotdot">...</li>}
 
-                        <li
-                            className={pageNumber === secondPage ? 'isSelected' : ''}
-                            onClick={() => handleChangeNumber(secondPage)}
-                        >
-                            {secondPage}
-                        </li>
+                                <li
+                                    className={pageNumber === secondPage ? 'isSelected' : ''}
+                                    onClick={() => handleChangeNumber(secondPage)}
+                                >
+                                    {secondPage}
+                                </li>
 
-                        <li className={pageNumber === thirdPage ? 'isSelected' : ''}
-                            onClick={() => handleChangeNumber(thirdPage)}
-                        >
-                            {thirdPage}
-                        </li>
-                        <li
-                            className={pageNumber === forthPage ? 'isSelected' : ''}
-                            onClick={() => handleChangeNumber(forthPage)}
-                        >
-                            {forthPage}
-                        </li>
-                        {pageNumber <= totalPage - 3 && <li className="dotdotdot">...</li>}
-                        <li
-                            className={pageNumber === totalPage ? 'isSelected' : ''}
-                            onClick={() => handleChangeNumber(totalPage)}
-                        >
-                            {totalPage}
-                        </li>
-                        <RightOutlined className="icon" onClick={handleNextPage} />
-                    </ul>
+                                <li className={pageNumber === thirdPage ? 'isSelected' : ''}
+                                    onClick={() => handleChangeNumber(thirdPage)}
+                                >
+                                    {thirdPage}
+                                </li>
+                                <li
+                                    className={pageNumber === forthPage ? 'isSelected' : ''}
+                                    onClick={() => handleChangeNumber(forthPage)}
+                                >
+                                    {forthPage}
+                                </li>
+                                {pageNumber <= totalPage - 3 && <li className="dotdotdot">...</li>}
+                                <li
+                                    className={pageNumber === totalPage ? 'isSelected' : ''}
+                                    onClick={() => handleChangeNumber(totalPage)}
+                                >
+                                    {totalPage}
+                                </li>
+                                <RightOutlined className="icon" onClick={handleNextPage} />
+                            </ul>
+                        </>)}
 
                 </div>
             </Spin>

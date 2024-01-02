@@ -33,7 +33,7 @@ export const getTopMarketCap = (setTopCoins: (value: any) => void, topType: stri
         })
 }
 
-export const getMarket = (setTopCoins: (value: any) => void, setLoading: (value: any) => void, amountPerPage: number, page: number) => {
+export const getMarket = (setTopCoins: (value: any) => void, setLoading: (value: any) => void) => {
     setLoading(true)
     axios.get(`${endPoint}/coins/markets?vs_currency=usd&order=market_cap_desc&page=1&sparkline=false&locale=en`)
         .then(res => {
@@ -42,6 +42,19 @@ export const getMarket = (setTopCoins: (value: any) => void, setLoading: (value:
         .catch(err => {
             console.log(err)
             // message.error('You have sending too many requests, please try again in 5 minutes.')
+        })
+        .finally(() => setLoading(false))
+}
+
+export const getCoinInfo = (coinId: string, setCoinInfo: (value: any) => void, setLoading: (value: any) => void) => {
+    setLoading(true)
+    axios.get(`${endPoint}/coins/${coinId}`)
+        .then(res => {
+            setCoinInfo(res.data)
+        })
+        .catch(err => {
+            console.log(err)
+            message.error('You have sending too many requests, please try again in 5 minutes.')
         })
         .finally(() => setLoading(false))
 }

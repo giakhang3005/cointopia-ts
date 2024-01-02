@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { Row, Col } from "antd"
 import axios from "axios"
 import { CaretUpFilled, CaretRightOutlined, CaretDownFilled } from '@ant-design/icons'
 import { getTopMarketCap } from "../../Services/APIs"
+import { Data, IContext } from "../../App";
 
 
 type Props = {}
@@ -36,16 +37,19 @@ const CoinCard = ({ img, symbol, price, priceChanged }: ICoinCard) => {
 
 // TOP MARKET CAP
 export const TopMarketCap = (props: Props) => {
+    const { coinList, loading } = useContext(Data) as IContext;
     const [topCoins, setTopCoins] = useState<any>(null)
-    const [displayCoins, setDisplayCoins] = useState<any>(null)
 
     useEffect(() => {
-        setDisplayCoins(topCoins)
-    }, [topCoins])
+        let coinListDisplay = []
+        if (coinList) {
+            coinListDisplay.push(coinList[0])
+            coinListDisplay.push(coinList[1])
+            coinListDisplay.push(coinList[2])
+        }
 
-    useEffect(() => {
-        getTopMarketCap(setTopCoins, 'marketCap')
-    }, [])
+        setTopCoins(coinListDisplay)
+    }, [coinList])
 
     return (
         <Col span={17} sm={11} md={7} className="coinsSection">
@@ -54,15 +58,16 @@ export const TopMarketCap = (props: Props) => {
             </div>
 
             {
-                displayCoins === null && (
+                topCoins === null && (
                     <i className="noData">Please try again later</i>
                 )
             }
 
             {
-                displayCoins?.map((coin: any, i: number) => {
+                topCoins?.map((coin: any, i: number) => {
                     return (
                         <CoinCard
+                            key={i}
                             img={coin.image}
                             symbol={coin.symbol}
                             price={coin.current_price}
@@ -77,12 +82,7 @@ export const TopMarketCap = (props: Props) => {
 // TOP NEWEST TOKEN
 export const TopNewToken = (props: Props) => {
     const [topCoins, setTopCoins] = useState<any>(null)
-    const [displayCoins, setDisplayCoins] = useState<any>(null)
 
-    useEffect(() => {
-        setDisplayCoins(topCoins)
-    }, [topCoins])
-    
 
     useEffect(() => {
         getTopMarketCap(setTopCoins, 'newest')
@@ -95,15 +95,16 @@ export const TopNewToken = (props: Props) => {
             </div>
 
             {
-                displayCoins === null && (
+                topCoins === null && (
                     <i className="noData">Please try again later</i>
                 )
             }
 
             {
-                displayCoins?.map((coin: any, i: number) => {
+                topCoins?.map((coin: any, i: number) => {
                     return (
                         <CoinCard
+                            key={i}
                             img={coin.image}
                             symbol={coin.symbol}
                             price={coin.current_price}
@@ -118,11 +119,6 @@ export const TopNewToken = (props: Props) => {
 // TOP VOLUME
 export const TopVolume = (props: Props) => {
     const [topCoins, setTopCoins] = useState<any>(null)
-    const [displayCoins, setDisplayCoins] = useState<any>(null)
-
-    useEffect(() => {
-        setDisplayCoins(topCoins)
-    }, [topCoins])
 
     useEffect(() => {
         getTopMarketCap(setTopCoins, 'volume')
@@ -135,15 +131,16 @@ export const TopVolume = (props: Props) => {
             </div>
 
             {
-                displayCoins === null && (
+                topCoins === null && (
                     <i className="noData">Please try again later</i>
                 )
             }
 
             {
-                displayCoins?.map((coin: any, i: number) => {
+                topCoins?.map((coin: any, i: number) => {
                     return (
                         <CoinCard
+                            key={i}
                             img={coin.image}
                             symbol={coin.symbol}
                             price={coin.current_price}

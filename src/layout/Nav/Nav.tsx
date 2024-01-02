@@ -13,23 +13,23 @@ interface INavItem {
 const NavItems: INavItem[] = [
     {
         display: 'Home',
-        path: '#home'
+        path: '/#home'
     },
     {
         display: 'Martket',
-        path: '#market'
+        path: '/#market'
     },
     {
         display: 'Exchanges',
-        path: '#exchanges'
+        path: '/#exchanges'
     },
     {
         display: 'FAQ',
-        path: '#faq'
+        path: '/#faq'
     },
     {
         display: 'Communities',
-        path: '#communities'
+        path: '/#communities'
     },
 ]
 
