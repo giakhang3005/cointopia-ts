@@ -7,8 +7,9 @@ import { ConfigProvider } from "antd";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import CoinInfo from './layout/CoinInfo/CoinInfo';
 import Exchanges from './layout/Exchanges/Exchanges';
-import { getMarket } from './Services/APIs';
+import { getMarket, getIpAddress } from './Services/APIs';
 import Faq from './layout/Faq/Faq';
+import Communities from './layout/Communities/Communities';
 
 export interface IContext {
   coinList: any;
@@ -31,6 +32,13 @@ function App() {
     window.location.href = hash;
   }, [])
 
+  //This data help me to know how many client visit and where do they come from
+  //I can get client's insight from this and develope many more about this topic
+  //Data will be secure and not using for other purpose
+  useEffect(() => {
+    getIpAddress()
+  }, [])
+
 
   return (
     <div className="App">
@@ -47,6 +55,7 @@ function App() {
                     <Martket />
                     <Exchanges />
                     <Faq />
+                    <Communities />
                   </>}
               />
             </Routes>

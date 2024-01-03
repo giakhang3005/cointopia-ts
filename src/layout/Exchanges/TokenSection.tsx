@@ -55,7 +55,7 @@ const TokenSection = ({ token, setToken, exValue, setExValue, setOthersValue, ot
                 onOk={() => setIsModalOpen(false)}
                 footer={null}
             >
-                <input className='modalSelectTokenInput' value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+                <input className='modalSelectTokenInput' placeholder='BTC' value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
                 <div className='tokenTableContainer'>
                     {
                         displayCoinsList?.map((coin: any, index: number) => {

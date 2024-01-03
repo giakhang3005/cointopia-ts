@@ -1,0 +1,105 @@
+@use "../../App.scss";
+
+#communities {
+  min-height: 50vh;
+
+  .title {
+    width: 100%;
+    text-align: center;
+    font-size: 65px;
+    font-weight: 700;
+    color: App.$secondary-color;
+    text-shadow: 0 0 5px App.$primary-hover;
+
+    .discord {
+      color: App.$primary-color;
+      text-shadow: none;
+    }
+  }
+  .btnContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .joinBtn {
+      background: App.$primary-color;
+      margin: 50px 0 0 0;
+      padding: 20px;
+      border-radius: 30px;
+      border: none;
+      transition: all 0.12s linear;
+
+      a {
+        text-decoration: none;
+        color: App.$secondary-color;
+        font-weight: 600;
+        font-size: 30px;
+      }
+    }
+    .joinBtn:hover {
+      background: App.$primary-hover;
+    }
+    .joinBtn:focus {
+      outline: none;
+    }
+  }
+
+  .iconsContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: white;
+    margin: 22vh 0 0 0;
+
+    .icon {
+      height: 50px;
+      margin: 0 15px 0 15px;
+      cursor: pointer;
+      transition: all 0.12s linear;
+    }
+
+    .icon:hover {
+      color: App.$primary-hover;
+    }
+  }
+
+  .others {
+    color: App.$secondary-color;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    font-weight: 500;
+    font-size: 20px;
+    padding-right: 2.5vw;
+    box-sizing: border-box;
+    margin: 22px 0 2vh 0;
+
+    li {
+      padding: 0 20px 0 20px;
+      cursor: pointer;
+      transition: all 0.12s linear;
+    }
+
+    li:hover {
+      color: App.$primary-hover;
+    }
+  }
+
+  .copyright {
+    margin: 50px 0 0 0;
+    color: App.$secondary-color;
+    width: 100%;
+    text-align: center;
+
+    .author, .email {
+        font-size: 15px;
+        margin: 0 0 5px 0;
+    }
+
+    .copyrightText {
+        margin: 12px 0 8px 0;
+        font-size: 17px;
+        font-weight: 600;
+    }
+  }
+}

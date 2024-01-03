@@ -52,11 +52,15 @@ const Faq = (props: Props) => {
                     className='collapse'
                     size="large"
                     items={[{
-                        key: '4', label: 'How to view coins Informations and Graph?', children:
+                        key: '5', label: 'How to trade on Cointopia?', children:
                             <ol>
-                                <li>Go to <a href="#market">Market</a> section</li>
-                                <li>Click on the Symbol, Name or <CaretRightOutlined /> of the coin that you want to view details/graph</li>
-                                <li>If you want to go back, simply click any button on the Navbar</li>
+                                <li>Go to <a href="#exchanges">Exchanges</a> section</li>
+                                <li>Connect your wallet by fill the demo wallet informations that Cointopia provided or click "Fast Connect" if this is the second time</li>
+                                <li>On the Left (Desktop) and Top (Mobile), select the currency that you want to exchange from</li>
+                                <li>On the Right (Desktop) and Bottom (Mobile), select the currency that you want to exchange to</li>
+                                <li>Type the amount in 1 amount box, then it will calculate other amount for you</li>
+                                <li>Click "Exchange"</li>
+                                <li>Click on "View Assets" to view assets & transactions history</li>
                             </ol>
                     }]}
                 />
@@ -64,13 +68,11 @@ const Faq = (props: Props) => {
                     className='collapse'
                     size="large"
                     items={[{
-                        key: '5', label: 'How to trade on Cointopia?', children:
+                        key: '4', label: 'How to view coins Informations and Graph?', children:
                             <ol>
-                                <li>Go to <a href="#exchanges">Exchanges</a> section</li>
-                                <li>On the Left (Desktop) and Top (Mobile), select the currency that you want to exchange from</li>
-                                <li>On the Right (Desktop) and Bottom (Mobile), select the currency that you want to exchange to</li>
-                                <li>Type the amount in 1 amount box, then it will calculate other amount for you</li>
-                                <li>Connect your wallet and click Exchange</li>
+                                <li>Go to <a href="#market">Market</a> section</li>
+                                <li>Click on the Symbol, Name or <CaretRightOutlined /> of the coin that you want to view details/graph</li>
+                                <li>If you want to go back, simply click any button on the Navbar</li>
                             </ol>
                     }]}
                 />

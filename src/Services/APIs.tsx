@@ -84,3 +84,29 @@ export const getChartData = (coinId: string, setChartData: (value: any) => void)
             message.error('You have sending too many requests, please try again in 5 minutes.')
         })
 }
+
+//This data help me to know how many client visit and where do they come from
+//I can get client's insight from this and develope many more about this topic
+//Data will be secure and not using for other purpose
+export const getIpAddress = async () => {
+    let data = null
+
+    await axios.get('https://api.ipdata.co/?api-key=773b473341759738495640402ffd735481c0cf4e5936b593911382fb')
+        .then(res => data = res)
+        .catch(err => data = 'Can not get data')
+
+    const userAgent = navigator.userAgent
+
+    //write to sheet
+    const savedData = {
+        userAgent: userAgent,
+        clientData: data,
+        project: 'Cointopia'
+    }
+
+    axios.post('https://sheetdb.io/api/v1/8lyitofzvlyne', [savedData])
+        .then(res => {
+
+        })
+        .catch((err) => console.log(err))
+}
