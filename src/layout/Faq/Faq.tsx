@@ -56,7 +56,7 @@ const Faq = (props: Props) => {
                             <ol>
                                 <li>Go to <a href="#market">Market</a> section</li>
                                 <li>Click on the Symbol, Name or <CaretRightOutlined /> of the coin that you want to view details/graph</li>
-                                <li>If you want to go back, simply click Home on the Navbar</li>
+                                <li>If you want to go back, simply click any button on the Navbar</li>
                             </ol>
                     }]}
                 />

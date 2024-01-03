@@ -1,7 +1,7 @@
 @use "../../App.scss";
 
 #exchanges {
-  min-height: 60vh;
+  min-height: 35vh;
   width: 100vw;
   padding: 0 0 10vh 0;
 
@@ -18,7 +18,7 @@
   }
 
   .exchangeContainer {
-    margin: 40px 0 0 0;
+    margin: 60px 0 0 0;
 
     .tokenContainer {
       .selectSection {
@@ -109,6 +109,109 @@
   }
 }
 
+.connectWalletContainer {
+  padding: 10px 0 0 0;
+  .connectWalletForm {
+    margin: 10px 0 0 0;
+
+    .inputTitle {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 550;
+    }
+
+    .inputBox {
+      height: 25px;
+      width: 100%;
+      padding: 4px 4px 4px 10px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      border: none;
+      background-color: App.$container-background;
+      transition: all 0.12s linear;
+    }
+
+    .inputBox:focus {
+      box-shadow: 1.5px 2px 8px App.$primary-hover;
+      outline: 1px solid App.$primary-color;
+    }
+  }
+
+  .errNoti {
+    width: 100%;
+    color: red;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 7px 0 0 8px;
+    transition: all 0.12s linear;
+  }
+
+  .confirmConnectBtn {
+    text-align: center;
+    margin: 22px 0 0 0;
+    padding: 8px;
+    border-radius: 10px;
+    background-color: App.$primary-color;
+    cursor: pointer;
+    transition: all 0.14s linear;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .confirmConnectBtn:hover {
+    background-color: App.$primary-hover;
+  }
+
+  .note {
+    margin: 15px 0 15px 0;
+    font-size: 11px;
+    color: App.$primary-hover;
+  }
+
+  .demoWalletInfo {
+    padding: 12px 0 0 0;
+    border-top: 1px solid App.$secondary-hover;
+
+    .title {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 0 0 3px 0;
+    }
+  }
+
+  .disconnect {
+    width: 100%;
+  }
+}
+
+.viewHistory {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 5px 0 7px 0;
+
+  .viewText {
+    font-weight: 550;
+    transition: all 0.12s linear;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 14px;
+    color: App.$secondary-color;
+  }
+
+  .viewText:hover {
+    color: App.$secondary-hover;
+  }
+  text-align: center;
+}
+
 .connectWallet {
   display: flex;
   align-items: center;
@@ -129,6 +232,15 @@
     width: 100%;
     text-align: center;
     font-weight: 550;
+  }
+
+  .exchangeBtn {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 1.5px 0 1.7px 0;
+    font-size: 15px;
+    font-weight: 600;
   }
 }
 .connectWallet:hover {
@@ -156,6 +268,11 @@
   margin: 10px 0 0 0;
   overflow: scroll;
   height: 450px;
+
+  .assetsTokenContainer {
+    height: 320px;
+    overflow: scroll;
+  }
 
   .row {
     padding: 10px;
@@ -190,10 +307,56 @@
     .arrow {
       text-align: right;
     }
+
+    .timestamp {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 0 0 3px 0;
+      font-weight: 600;
+      color: App.$secondary-color;
+    }
   }
 
   .row:hover {
     background-color: App.$table-hover;
+  }
+
+  .WallAddrContainer {
+    padding: 5px 0 10px 15px;
+    font-weight: 550;
+    font-size: 15px;
+
+    .WallAddr {
+      padding: 0 0 0 10px;
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+}
+
+.exchangeContainerSection {
+  .viewAssetsBtn {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    text-align: center;
+    margin: 5px 0 0 0;
+    padding: 10px;
+    color: App.$secondary-color;
+    border-radius: 10px;
+    font-weight: 550;
+    cursor: pointer;
+    transition: all 0.14s linear;
+
+    .exchangeBtn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  .viewAssetsBtn:hover {
+    background-color: rgba(255, 255, 255, 0.225);
   }
 }
 
@@ -246,6 +409,11 @@
       span {
         display: flex;
       }
+    }
+  }
+  .exchangeContainerSection {
+    .viewAssetsBtn {
+      width: 100%;
     }
   }
 }

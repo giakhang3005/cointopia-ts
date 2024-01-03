@@ -9,10 +9,10 @@ type Props = {
     token: any;
     setToken: (value: any) => void;
 
-    exValue: number;
-    setExValue: (value: number) => void;
+    exValue: string;
+    setExValue: (value: string) => void;
 
-    setOthersValue: (value: number) => void;
+    setOthersValue: (value: string) => void;
     otherToken: any;
 }
 
@@ -22,10 +22,14 @@ const TokenSection = ({ token, setToken, exValue, setExValue, setOthersValue, ot
     const [searchValue, setSearchValue] = useState<string>('')
     const [displayCoinsList, setDisplayCoinsList] = useState<any>(null)
 
-    const handleValueChange = (newValue: number) => {
-        if (token !== null && otherToken !== null) {
+    const handleValueChange = (newValue: string) => {
+        //only number and . is accepted
+        const regex = /^[0-9.]*$/;
+
+        //Check if APIs getting token, value match regex
+        if (token !== null && otherToken !== null && newValue.match(regex) ) {
             setExValue(newValue)
-            setOthersValue(newValue * (token.current_price / otherToken.current_price))
+            setOthersValue(isNaN(parseFloat(newValue)) ? '' : `${parseFloat(newValue) * (token.current_price / otherToken.current_price)}`)
         }
     }
 
@@ -72,7 +76,7 @@ const TokenSection = ({ token, setToken, exValue, setExValue, setOthersValue, ot
                     </span>
                 </Row>
                 <Row>
-                    <input type="text" className='inputAmount' placeholder='0.0' onChange={(e) => handleValueChange(Number(e.target.value))} value={`${exValue}`} />
+                    <input type="text" className='inputAmount' placeholder='0.0' onChange={(e) => handleValueChange(e.target.value)} value={`${exValue}`} />
                 </Row>
                 <Row className='currPrice'>
                     Current Price: ${token ? token?.current_price.toLocaleString() : 0}

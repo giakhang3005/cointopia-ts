@@ -6,8 +6,8 @@ type Props = {
     setToken: (value: any) => void
     setModal: (value: any) => void
 
-    setValue: (value: number) => void
-    setOtherValue: (value: number) => void
+    setValue: (value: string) => void
+    setOtherValue: (value: string) => void
 }
 
 const ModalTokenRow = ({ coin, setToken, setModal, setValue, setOtherValue }: Props) => {
@@ -15,8 +15,8 @@ const ModalTokenRow = ({ coin, setToken, setModal, setValue, setOtherValue }: Pr
         setToken(coin)
         setModal(false)
 
-        setValue(0)
-        setOtherValue(0)
+        setValue('')
+        setOtherValue('')
     }
     return (
         <Row className='row' onClick={handleClick}>
