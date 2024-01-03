@@ -1,8 +1,9 @@
 @use "../../App.scss";
 
 #market {
-  min-height: 100vh;
+  min-height: 40vh;
   width: 100vw;
+  padding-bottom: 40px;
 
   .blocked {
     height: 10vh;
@@ -164,6 +165,11 @@
 @media screen and (max-width: 770px) {
   #market {
     .tableContainer {
+      .tryagain {
+        justify-content: left;
+        font-size: 12px;
+        margin: 10px 0 0 10vw;
+      }
       .Title {
         .cell {
           font-size: 12px;

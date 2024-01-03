@@ -39,7 +39,7 @@ export const getTrendingCoins = (setTopCoins: (value: any) => void) => {
     axios.get(`${endPoint}/search/trending`)
         .then(res => {
             const receiveCoins = res.data.coins
-            let top3Coins = [receiveCoins[0], receiveCoins[1], receiveCoins[3]]
+            let top3Coins = [receiveCoins[0], receiveCoins[2], receiveCoins[4]]
             setTopCoins(top3Coins)
         })
         .catch(err => {

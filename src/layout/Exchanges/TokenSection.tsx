@@ -67,7 +67,7 @@ const TokenSection = ({ token, setToken, exValue, setExValue, setOthersValue, ot
                 <Row className='selectSection'>
                     <img src={token?.image} className='logo' />
                     <span className="clickSection" onClick={() => setIsModalOpen(true)}>
-                        <div className='symbol'>{token?.symbol.toUpperCase()}</div>
+                        <div className='symbol'>{token ? token?.symbol.toUpperCase() : 'No data'}</div>
                         <CaretDownOutlined className="icon" />
                     </span>
                 </Row>
@@ -75,7 +75,7 @@ const TokenSection = ({ token, setToken, exValue, setExValue, setOthersValue, ot
                     <input type="text" className='inputAmount' placeholder='0.0' onChange={(e) => handleValueChange(Number(e.target.value))} value={`${exValue}`} />
                 </Row>
                 <Row className='currPrice'>
-                    Current Price: ${token?.current_price.toLocaleString()}
+                    Current Price: ${token ? token?.current_price.toLocaleString() : 0}
                 </Row>
             </Col>
             {/* <Col span={2} sm={0} /> */}

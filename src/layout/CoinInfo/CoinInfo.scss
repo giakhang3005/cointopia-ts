@@ -6,6 +6,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 40px;
+
 
   .graphContainer {
     width: 100vw;
@@ -69,6 +71,7 @@
     font-size: 16px;
     color: white;
     height: 250px;
+    width: 100%;
     overflow: scroll;
     letter-spacing: 0.4px;
     line-height: 21px;

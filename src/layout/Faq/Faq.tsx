@@ -52,7 +52,7 @@ const Faq = (props: Props) => {
                     className='collapse'
                     size="large"
                     items={[{
-                        key: '4', label: 'How to view coins info and graph?', children:
+                        key: '4', label: 'How to view coins Informations and Graph?', children:
                             <ol>
                                 <li>Go to <a href="#market">Market</a> section</li>
                                 <li>Click on the Symbol, Name or <CaretRightOutlined /> of the coin that you want to view details/graph</li>
@@ -82,7 +82,7 @@ const Faq = (props: Props) => {
                             <>
                                 There are several reasons:
                                 <ol>
-                                    <li>You have no/low connection to internet, you should check your connection and refresh again</li>
+                                    <li>You have no/low internet connection, you should check your connection and refresh again</li>
                                     <li>You have request for data too many times, you should try again later after 5 minutes</li>
                                 </ol>
                             </>

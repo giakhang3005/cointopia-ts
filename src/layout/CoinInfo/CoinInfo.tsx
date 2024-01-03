@@ -24,6 +24,7 @@ const CoinInfo = (props: Props) => {
 
     return (
         <div className='coinInfo'>
+            <div className="blocked"></div>
             <Spin spinning={loading}>
                 {/* Informations */}
                 <Row style={{ width: '100%' }}>
@@ -49,7 +50,7 @@ const CoinInfo = (props: Props) => {
                                     </Col>
                                 </Row>
                                 <Row>
-                                    <div dangerouslySetInnerHTML={{ __html: coinInfo?.description.en }} className='description'></div>
+                                    <div dangerouslySetInnerHTML={{ __html: coinInfo?.description.en === '' ? 'There is no description for is coin' :  coinInfo?.description.en}} className='description'></div>
                                 </Row>
                             </Col>
                         </Row>

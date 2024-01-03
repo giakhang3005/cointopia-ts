@@ -229,16 +229,20 @@ const CoinGraph = ({ coinId }: Props) => {
                     className="displayGraph"
                     // style={{ padding: "8px 1% 1% 0" }}
                     data={{
-                        labels: chartData?.prices.map((data: any) => {
-                            const d = new Date(data[0])
-                            return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`
+                        labels: chartData?.prices.map((data: any, i: number) => {
+                            if (i === chartData?.prices.length - 1) {
+                                return 'Now'
+                            } else {
+                                const d = new Date(data[0])
+                                return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`
+                            }
                         }),
                         datasets: [
                             {
                                 label: "Prices",
                                 data: chartData?.prices.map((data: any) => data[1]),
-                                borderColor: "#fc784c",
-                                backgroundColor: "#fc784c",
+                                borderColor: "#a78bfa",
+                                backgroundColor: "#a78bfa",
                             },
                         ],
                     }}

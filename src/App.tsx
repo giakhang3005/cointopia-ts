@@ -26,7 +26,11 @@ function App() {
 
   useEffect(() => {
     getMarket(setCoinList, setLoading)
+
+    const hash = window.location.hash
+    window.location.href = hash;
   }, [])
+
 
   return (
     <div className="App">
