@@ -150,7 +150,7 @@
 
   .confirmConnectBtn {
     text-align: center;
-    margin: 22px 0 0 0;
+    margin: 26px 0 0 0;
     padding: 8px;
     border-radius: 10px;
     background-color: App.$primary-color;
@@ -169,10 +169,28 @@
   }
 
   .note {
-    margin: 15px 0 15px 0;
+    margin: 20px 0 15px 0;
     font-size: 11px;
     color: App.$primary-hover;
   }
+
+  .savedWalletNoty {
+    margin: 5px 0 0 0;
+    font-size: 12px;
+    text-align: center;
+    width: 100%;
+
+    .fastconnect {
+      color: App.$primary-color;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.12s linear;
+    }
+
+    .fastconnect:hover {
+      color: App.$primary-hover;
+    }
+  } 
 
   .demoWalletInfo {
     padding: 12px 0 0 0;
@@ -333,6 +351,8 @@
       font-weight: 400;
     }
   }
+
+  
 }
 
 .exchangeContainerSection {

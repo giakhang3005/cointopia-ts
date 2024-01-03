@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { DemoWalletData } from './DemoWalletData'
 import { Row, Col, message } from 'antd'
 import { RightOutlined } from '@ant-design/icons'
 import { Data, IContext } from "../../App";
 import { useContext } from 'react';
-import { checkLocalData } from './ExchangeLocalStrFunc';
+import { checkLocalData, saveToLocal } from './ExchangeLocalStrFunc';
 
 const greenColor: string = '#84cc16'
 const redColor: string = '#ef4444'
@@ -34,7 +34,14 @@ const ConnectWalletModal = ({ setConnectedWalletData, connectedWalletData, trans
   const [inputSKey, setInputSKey] = useState<string>('')
   const [err, setErr] = useState<boolean>(false)
   const [isViewingAssets, setIsViewingAssets] = useState<boolean>(true)
+  const [haveLocalData, setHaveLocalData] = useState<boolean>(false)
 
+  //Check if user have any saved any wallet to local
+  useEffect(() => {
+    checkLocalData("wallet") !== null && setHaveLocalData(true)
+  }, [connectedWalletData])
+
+  //handle user connect wallet using key & addr
   const handleConnect = () => {
     if (inputAddr === DemoWalletData.address && inputSKey === DemoWalletData.secretKey) {
       message.success('Connected successfully')
@@ -42,6 +49,11 @@ const ConnectWalletModal = ({ setConnectedWalletData, connectedWalletData, trans
       const checkWallet = checkLocalData("wallet")
       setConnectedWalletData(checkWallet === null ? DemoWalletData : checkWallet)
       setTransactionHistory(checkWallet === null ? [] : checkLocalData("history"))
+
+      //if did not save to the local, save a new one
+      if (checkWallet === null) {
+        saveToLocal(DemoWalletData, [])
+      }
 
       setInputAddr('')
       setInputSKey('')
@@ -51,10 +63,20 @@ const ConnectWalletModal = ({ setConnectedWalletData, connectedWalletData, trans
     }
   }
 
+  //handle user connect with fast connect
+  const fastConnect = () => {
+    setConnectedWalletData(checkLocalData("wallet"))
+    setTransactionHistory(checkLocalData("history"))
+    message.success('Connected successfully')
+  }
+
   const handleDisconnect = () => {
     setConnectedWalletData(null)
     message.success('Disconnected successfully')
   }
+
+
+
 
   return (
     <>
@@ -63,15 +85,18 @@ const ConnectWalletModal = ({ setConnectedWalletData, connectedWalletData, trans
         (<div className='connectWalletContainer'>
           {/* Connect wallet main section */}
           <Row className="connectWalletForm">
+
             {/* Address */}
             <Col span={5} className='inputTitle'>Address:</Col>
             <Col span={19}><input className='inputBox' type="text" value={inputAddr} onChange={(e) => setInputAddr(e.target.value)} /></Col>
           </Row>
+
           {/* Secret Key */}
           <Row className="connectWalletForm">
             <Col span={5} className='inputTitle'>Secret Key:</Col>
             <Col span={19}><input className='inputBox' type="text" value={inputSKey} onChange={(e) => setInputSKey(e.target.value)} /></Col>
           </Row>
+
           {/* Error message */}
           {err && <Row >
             <Col span={5}></Col>
@@ -80,6 +105,13 @@ const ConnectWalletModal = ({ setConnectedWalletData, connectedWalletData, trans
           <Row>
             <button className='confirmConnectBtn' onClick={handleConnect}>Connect</button>
           </Row>
+
+          {/* User have local data -> click to fast connect */}
+          {haveLocalData && <Row>
+            <div className="savedWalletNoty">You aldready have a wallet, click to <span className='fastconnect' onClick={fastConnect}>FAST CONNECT</span></div>
+          </Row>}
+
+          {/* Note */}
           <Row>
             <div className="note" style={{ marginBottom: '6px' }}>1. Cointopia does not provide any API calling to connect your wallet so you need to fill demo wallet address & key to test</div>
             <div className="note" style={{ marginTop: 0 }}>2. Cointopia will save your test wallet & transactions history to your browser, you can access it any time by connect demo wallet again</div>
@@ -151,8 +183,8 @@ const ConnectWalletModal = ({ setConnectedWalletData, connectedWalletData, trans
                               ${transaction.fromToken.price}
                             </Col>
                             <Col span={3} className='arrow' style={{ fontSize: '12px' }}>
-                              <div style={{ color: redColor }}>-{transaction.fromToken.exchangeAmount}</div>
-                              <div>{transaction.fromToken.newValue.toFixed(4)}</div>
+                              <div style={{ color: redColor }}>-{transaction.fromToken.exchangeAmount.toFixed(3)}</div>
+                              <div>{transaction.fromToken.newValue.toFixed(3)}</div>
                             </Col>
 
                             {/* Arrow */}
@@ -171,8 +203,8 @@ const ConnectWalletModal = ({ setConnectedWalletData, connectedWalletData, trans
                               ${transaction.toToken.price}
                             </Col>
                             <Col span={3} className='arrow' style={Object.assign({ fontSize: '12px' })}>
-                              <div style={{ color: greenColor }}>+{transaction.toToken.exchangeAmount.toFixed(4)}</div>
-                              <div>{transaction.toToken.newValue.toFixed(4)}</div>
+                              <div style={{ color: greenColor }}>+{transaction.toToken.exchangeAmount.toFixed(3)}</div>
+                              <div>{transaction.toToken.newValue.toFixed(3)}</div>
                             </Col>
                           </Row>
                         </Row>
