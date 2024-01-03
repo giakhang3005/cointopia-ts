@@ -1,6 +1,7 @@
 @use "../../App.scss";
 
 #communities {
+  padding-top: 10vh;
   min-height: 50vh;
 
   .title {
@@ -91,15 +92,24 @@
     width: 100%;
     text-align: center;
 
-    .author, .email {
-        font-size: 15px;
-        margin: 0 0 5px 0;
+    .author,
+    .email {
+      font-size: 15px;
+      margin: 0 0 5px 0;
     }
 
     .copyrightText {
-        margin: 12px 0 8px 0;
-        font-size: 17px;
-        font-weight: 600;
+      margin: 12px 0 8px 0;
+      font-size: 17px;
+      font-weight: 600;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #communities {
+    .title {
+      font-size: 50px;
     }
   }
 }
