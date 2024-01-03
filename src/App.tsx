@@ -28,8 +28,8 @@ function App() {
   useEffect(() => {
     getMarket(setCoinList, setLoading)
 
-    const hash = window.location.hash
-    window.location.href = hash;
+    // const hash = window.location.hash
+    // window.location.href = hash;
   }, [])
 
   //This data help me to know how many client visit and where do they come from
