@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react"
 import { Row, Col } from "antd"
 import axios from "axios"
 import { CaretUpFilled, CaretRightOutlined, CaretDownFilled } from '@ant-design/icons'
-import { getTopMarketCap } from "../../Services/APIs"
+import { getTopMarketCap, getTrendingCoins } from "../../Services/APIs"
 import { Data, IContext } from "../../App";
 
 
@@ -121,12 +121,12 @@ export const TopVolume = (props: Props) => {
     const [topCoins, setTopCoins] = useState<any>(null)
 
     useEffect(() => {
-        getTopMarketCap(setTopCoins, 'volume')
+        getTrendingCoins(setTopCoins)
     }, [])
 
     return (
         <Col span={17} sm={11} md={7} className="coinsSection">
-            <div className="coinTitle">Trading Volume
+            <div className="coinTitle">Trending
                 <a className="viewmore" href="#market">View more <CaretRightOutlined className="viewMoreIcon" /></a>
             </div>
 
@@ -141,10 +141,10 @@ export const TopVolume = (props: Props) => {
                     return (
                         <CoinCard
                             key={i}
-                            img={coin.image}
-                            symbol={coin.symbol}
-                            price={coin.current_price}
-                            priceChanged={coin.price_change_percentage_24h} />
+                            img={coin.item.large}
+                            symbol={coin.item.symbol}
+                            price={Number(coin.item.data.price.substring(1))}
+                            priceChanged={coin.item.data.price_change_percentage_24h.usd} />
                     )
                 })
             }

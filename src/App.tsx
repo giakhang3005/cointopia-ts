@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import CoinInfo from './layout/CoinInfo/CoinInfo';
 import Exchanges from './layout/Exchanges/Exchanges';
 import { getMarket } from './Services/APIs';
+import Faq from './layout/Faq/Faq';
 
 export interface IContext {
   coinList: any;
@@ -41,6 +42,7 @@ function App() {
                     <Home />
                     <Martket />
                     <Exchanges />
+                    <Faq />
                   </>}
               />
             </Routes>

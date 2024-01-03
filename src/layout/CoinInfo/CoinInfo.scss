@@ -2,10 +2,32 @@
 
 .coinInfo {
   width: 100vw;
-  height: 100vh;
+  min-height: 150vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .graphContainer {
+    width: 100vw;
     display: flex;
     justify-content: center;
-    align-items: center;
+
+    box-sizing: border-box;
+
+    .displayGraph {
+      width: 80vw;
+      padding: 0 2vw 0 2vw;
+    }
+  }
+  .graphTitle {
+    margin: 20px 0 10px 0;
+    padding: 10px 2vw 0 2vw;
+    color: App.$primary-color;
+    text-shadow: 0.5px 1px 2px App.$primary-hover;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+  }
 
   .imageContainer {
     text-align: center;
@@ -95,8 +117,8 @@
     }
 
     .description {
-        margin: 25px 20px 0 25px;
-        font-size: 14px;
+      margin: 25px 20px 0 25px;
+      font-size: 14px;
     }
   }
 }

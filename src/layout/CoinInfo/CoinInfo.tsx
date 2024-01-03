@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getCoinInfo } from '../../Services/APIs';
 import { Row, Col, Spin } from 'antd'
 import "./CoinInfo.scss"
+import CoinGraph from './CoinGraph';
 
 type Props = {}
 const greenColor: string = '#84cc16'
@@ -17,12 +18,14 @@ const CoinInfo = (props: Props) => {
     const coinId: any = parameter.coinId
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         getCoinInfo(coinId, setCoinInfo, setLoading)
     }, [])
 
     return (
         <div className='coinInfo'>
             <Spin spinning={loading}>
+                {/* Informations */}
                 <Row style={{ width: '100%' }}>
                     <Col span={0} sm={2}></Col>
                     <Col span={24} sm={22} style={{ width: '100%' }}>
@@ -54,6 +57,9 @@ const CoinInfo = (props: Props) => {
                     </Col>
                     {/* <Col sm={1}></Col> */}
                 </Row>
+
+                {/* Graph */}
+                <Row><CoinGraph coinId={coinId} /></Row>
             </Spin>
         </div>
     )

@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react"
 import "./Market.scss"
 import { Row, Col, Spin } from "antd"
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { LeftOutlined, RightOutlined, CaretRightOutlined } from '@ant-design/icons';
 import { Link } from "react-router-dom";
 import { Data, IContext } from "../../App";
 
@@ -102,9 +102,10 @@ const Martket = (props: Props) => {
 
                     <Row className="Title">
                         <Col span={8} className="cell">Coin</Col>
-                        <Col span={5} className="cell number">Price</Col>
-                        <Col span={5} className="cell number">Changes (24h)</Col>
-                        <Col span={6} className="cell number">Market Cap</Col>
+                        <Col span={3} className="cell number">Price</Col>
+                        <Col span={5} className="cell number">24h Changes</Col>
+                        <Col span={5} className="cell number">Market Cap</Col>
+                        <Col span={2} />
                     </Row>
 
                     {displayCoins === null || displayCoins?.length === 0
@@ -122,16 +123,19 @@ const Martket = (props: Props) => {
                                                     <Link to={`/${coin.id}`} className="logo">{coin.symbol.toUpperCase()}</Link>
                                                     <Link to={`/${coin.id}`} className="name">{coin.name}</Link>
                                                 </Col>
-                                                <Col span={5} className="rowCell number">
+                                                <Col span={3} className="rowCell number">
                                                     <span className="price">${coin.current_price.toLocaleString()}</span>
                                                 </Col>
                                                 <Col span={5} className="rowCell number" style={{ color: coin.price_change_percentage_24h < 0 ? redColor : greenColor }}>
                                                     <span className="changes">{coin.price_change_percentage_24h.toFixed(3)}%</span>
                                                 </Col>
-                                                <Col span={6} className="rowCell">
+                                                <Col span={5} className="rowCell">
                                                     <span className="marketCap">
                                                         ${convertToLetterPrice(coin.market_cap)}
                                                     </span>
+                                                </Col>
+                                                <Col span={2} className="rowCell">
+                                                    <Link to={`/${coin.id}`} className="arrow"><CaretRightOutlined /></Link>
                                                 </Col>
                                             </Row>
                                         )

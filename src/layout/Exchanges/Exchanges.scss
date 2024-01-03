@@ -1,8 +1,9 @@
 @use "../../App.scss";
 
 #exchanges {
-  height: 100vh;
+  min-height: 60vh;
   width: 100vw;
+  padding: 0 0 10vh 0;
 
   .blocked {
     height: 12vh;

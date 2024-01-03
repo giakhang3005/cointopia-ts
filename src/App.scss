@@ -10,7 +10,7 @@ $secondary-hover: #9ca3af;
 $secondary-hover-opacity: #9ca3af55;
 
 $selection-color: #a78bfa;
-$container-background: #f3e8ff;
+$container-background: #e2ccfb;
 $table-hover: #7c3aed20;
 
 @import url("https://fonts.googleapis.com/css2?family=Barlow:300, 400, 500, 600, 700, 800, 900, 1000");
@@ -30,6 +30,13 @@ body {
 }
 *::selection {
   background-color: $selection-color;
+}
+
+a {
+  color: $primary-color;
+}
+a:hover {
+  color: $primary-hover
 }
 
 .gradient_text {
