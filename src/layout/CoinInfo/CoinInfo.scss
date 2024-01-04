@@ -68,6 +68,7 @@
 
   .description {
     margin: 25px 18px 0 10px;
+    padding: 0 10px 0 0;
     font-size: 16px;
     color: white;
     height: 250px;
@@ -75,6 +76,7 @@
     overflow: scroll;
     letter-spacing: 0.4px;
     line-height: 21px;
+    box-sizing: border-box;
 
     // Custom scrollbar styles
     &::-webkit-scrollbar {
