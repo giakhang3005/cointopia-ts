@@ -21,7 +21,7 @@ interface ICoinCard {
 const CoinCard = ({ img, symbol, price, priceChanged }: ICoinCard) => {
     return (
         <div className="coinContainer">
-            <span>
+            <span className="metaCtn">
                 <img src={img} className="logo" />
                 <div className="symbol">{symbol.toUpperCase()} </div>
             </span>
@@ -143,7 +143,7 @@ export const TopVolume = (props: Props) => {
                             key={i}
                             img={coin.item.large}
                             symbol={coin.item.symbol}
-                            price={Number(coin.item.data.price.substring(1))}
+                            price={Number(coin.item.data.price)}
                             priceChanged={coin.item.data.price_change_percentage_24h.usd} />
                     )
                 })

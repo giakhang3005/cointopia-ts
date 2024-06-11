@@ -93,9 +93,10 @@
           }
         }
 
-        span {
+        .metaCtn {
           display: flex;
           align-items: center;
+          width: 80px;
         }
 
         .coinContainer {
@@ -120,6 +121,8 @@
 
           .price {
             font-size: 13.5px;
+            width: 50px;
+            text-align: left;
           }
 
           .priceChanged {
